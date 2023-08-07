@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    implementation 'com.microsoft.sqlserver:mssql-jdbc:8.2.1.jre11'
+}
+
+test {
+    useJUnitPlatform()
+}

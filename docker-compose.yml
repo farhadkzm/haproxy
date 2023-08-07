@@ -6,12 +6,12 @@ services:
       - "./configs/haproxy.cfg:/etc/haproxy/haproxy.cfg"
     ports:
       - "52001:52001"
+      - "52005:52005"
     expose:
       # Opens port 3306 on the container
       - '52001'
-
-  db:
-    platform: linux/x86_64
+      - '52005'
+  mysql_db:
     image: mysql:5.7
     restart: always
     environment:
@@ -28,3 +28,15 @@ services:
     expose:
       # Opens port 3306 on the container
       - '3306'
+  mssql_db:
+    image: mcr.microsoft.com/azure-sql-edge
+    restart: always
+    cap_add:
+      - SYS_PTRACE
+    environment:
+      ACCEPT_EULA: '1'
+      MSSQL_SA_PASSWORD: 'StrongPassword123'
+    ports:
+      - '1433:1433'
+    expose:
+      - '1433'
